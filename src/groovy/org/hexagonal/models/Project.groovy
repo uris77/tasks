@@ -6,16 +6,13 @@ Projects
 
 class Project{
 
-    def projectRepository
+    //def projectRepository
     
     def id
     String name
     String description
     private Set<Task> tasks  = new HashSet<Task>()
 
-    def persist(){
-        projectRepository.save(this)
-    }
 
     def addTask(task){
         task.project = this
@@ -25,7 +22,6 @@ class Project{
 
     def removeTask(task){
         tasks.remove(task)
-        projectRepository.save(this)
     }
 
     public Set<Task> getTasks(){

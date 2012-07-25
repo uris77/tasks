@@ -80,7 +80,6 @@ class ProjectGormRepositorySpec extends spock.lang.Specification{
             given: "A project has two tasks"
                 ProjectGormRepository repository = new ProjectGormRepository()
                 def project = new Project(name:'Project', description:'Description').save()
-                project.projectRepository = repository
                 def task1 = new Task(name:'Task1')
                 def task2 = new Task(name:'Task2')
                 project.addTask(task1)

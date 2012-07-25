@@ -6,12 +6,16 @@ class JsonService {
     
     def projectRepository
 
-    def render(instance){
+    def render(instance=null){
+        if(!instance){
+            return instance
+        }else{
         def builder = new JsonBuilder(instance)
         builder{
             id "${instance.id}"
             name instance.name
             description instance.description
+        }
         }
         
     }

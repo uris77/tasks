@@ -6,20 +6,25 @@ import grails.converters.JSON
 class ProjectController{
 
     def projectRepository
-    def jsonService
 
     def index(){ }
     
     def save(){
-        Project projectInstance = new Project(params)
+        def projectInstance = new Project(params)
         projectInstance = projectRepository.save(projectInstance)
-        render jsonService.render(projectInstance) as JSON
+        println "Rendering projectInstance: ${projectInstance.properties}"
+        render(projectInstance as JSON)
     }
 
 
     def list(){
-        //render jsonService.renderProjectList() as JSON
         render projectRepository.list() as JSON
+    }
+
+
+    def renderAsJson = {item->
+        def mocks = [id: 1, name: 'shit']
+        render item as JSON
     }
 
 }

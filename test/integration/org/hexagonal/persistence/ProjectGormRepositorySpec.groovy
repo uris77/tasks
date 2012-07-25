@@ -1,4 +1,4 @@
-package org.hexagonal.persistent
+package org.hexagonal.persistence
 
 import static org.junit.Assert.*
 

@@ -1,4 +1,4 @@
-package org.hexagonal.persistent
+package org.hexagonal.persistence
 
 import org.hexagonal.models.Task
 

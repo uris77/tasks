@@ -4,10 +4,11 @@ import spock.lang.Specification
 
 import grails.test.mixin.*
 import org.hexagonal.models.Project
-import org.hexagonal.persistent.Repository
-import org.hexagonal.persistent.ProjectGormRepository
+import org.hexagonal.persistence.Repository
+import org.hexagonal.persistence.ProjectGormRepository
 import groovy.mock.interceptor.MockFor
 import org.hexagonal.converters.JsonService
+import grails.converters.JSON
 
 @TestFor(ProjectController)
 class ProjectControllerSpec extends Specification{
@@ -16,35 +17,30 @@ class ProjectControllerSpec extends Specification{
         given:
             def _params = [name: 'Project1', description: 'Description']
             def projectInstance = new Project(_params)
+            ProjectGormRepository repository = Mock()
             def controller = new ProjectController()
             controller.params.putAll(_params)
-            ProjectGormRepository repository = Mock()
-            JsonService jsonService = Mock()
-            def mockProject = new Project(_params)
-            mockProject.id = 1
-            repository.save() >> mockProject
             controller.projectRepository = repository
-            controller.jsonService = jsonService
 
         when:
             controller.save()
 
         then:
-            1 * repository.save(_)
-            1 * jsonService.render(_)
+            1 * repository.save(_) >> { [name: 'Should Return Project Instance'] }
     } 
 
 
     def "should list all projects as json"(){
         given:
-            JsonService jsonService = Mock()
-            controller.jsonService = jsonService
+            Repository repository = Mock()
+            def controller = new ProjectController()
+            controller.projectRepository = repository
 
         when:
             controller.list()
 
         then:
-            1 * jsonService.renderProjectList()
+            1 * repository.list() >> { ["Mock List"] }
     }
 
 

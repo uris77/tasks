@@ -17,14 +17,15 @@ class ProjectControllerIntegrationSpec extends IntegrationSpec{
                 name: 'Project1',
                 description: 'Description']
             controller.params.putAll(params)
+            controller.request.contentType = "application/json"
+            controller.request.content = 
+                '{"name": "Project1", "description": "Description"}'.getBytes()
 
         when:
             controller.save()
-            println "contentAsString: ${controller.response.contentAsString}\n"
 
         then:
             def jsonResponse = JSON.parse(controller.response.contentAsString)
-            println jsonResponse
             assertEquals params.name, jsonResponse.name
     } 
 

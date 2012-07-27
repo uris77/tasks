@@ -6,6 +6,7 @@ import grails.test.mixin.*
 import org.hexagonal.models.Project
 import org.hexagonal.persistence.Repository
 import org.hexagonal.persistence.ProjectGormRepository
+import org.hexagonal.converters.JsonService
 import groovy.mock.interceptor.MockFor
 import org.hexagonal.converters.JsonService
 import grails.converters.JSON
@@ -18,15 +19,18 @@ class ProjectControllerSpec extends Specification{
             def _params = [name: 'Project1', description: 'Description']
             def projectInstance = new Project(_params)
             ProjectGormRepository repository = Mock()
+            JsonService jsonService = Mock()
             def controller = new ProjectController()
             controller.params.putAll(_params)
             controller.projectRepository = repository
+            controller.jsonService = jsonService
 
         when:
             controller.save()
 
         then:
             1 * repository.save(_) >> { [name: 'Should Return Project Instance'] }
+            1 * jsonService.render(_) >> { [name: "Saved Project"] }
     } 
 
 

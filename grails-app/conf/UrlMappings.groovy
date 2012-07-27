@@ -11,8 +11,8 @@ class UrlMappings {
             action = [GET:'list']
         }
 
-        "project/create"(controller: 'project', parseRequest: true){
-            action = [POST: 'create']
+        "/project/create"(controller: 'project', parseRequest: true){
+            action = [POST: 'save']
         }
 
 		"/"(view:"/index")

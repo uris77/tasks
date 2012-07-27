@@ -1,0 +1,33 @@
+<div>
+   <form class="well form-horizontal" >
+      <fieldset>
+         <legend>
+            Create A New Project
+         </legend>
+         <div class="control-group">
+            <label class="control-label" for="name">Name</label>
+            <div class="controls">
+               <input type="text" class="input-medium" id="name" 
+                  ng-model="project.name" required/>
+            </div>
+         </div>
+         <div class="control-group">
+            <label class="control-label" for="description">Description</label>
+            <div class="controls">
+               <input type="text" class="input-medium" id="description" 
+                  ng-model="project.description" required/>
+            </div>
+         </div>
+         <div class="control-group">
+            <div class="control-label"></div>
+            <div class="controls">
+               <button class="btn btn-primary" ng-click="createProject(project)">Submit</button>
+            </div>
+         </div>
+   </fieldset>
+   </form>
+   <div>
+      {{project.name}}
+   </div>
+</div>
+

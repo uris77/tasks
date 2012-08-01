@@ -30,7 +30,7 @@ class BootStrap {
             def returnArray = [:]
             returnArray['id'] = it.id
             returnArray['name'] = it.name
-            returnArray['project'] = [id: it.project.id, name: it.project.name, description: it.project.description]
+            returnArray['project'] = [id: it.project.id, name: it.project.name]
 
             return returnArray
         }

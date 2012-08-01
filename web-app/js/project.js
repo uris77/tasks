@@ -7,6 +7,9 @@ angular.module('Project',['ngResource']).
 });
 function ProjectController($scope, $http, $location){
 
+   $scope.saved = false;
+   $scope.project = {};
+
   $scope.fetch = function(){
      $http({method: 'GET', url:'http://localhost:8080/tasks/project/list'}).
       success(function(data,status){
@@ -17,28 +20,31 @@ function ProjectController($scope, $http, $location){
       });
    };
 
+
    $scope.add = function(jsonData){
       $http({method:'POST', url:'http://localhost:8080/tasks/project/create', data:jsonData }).
          success(function(data,status){
-            console.log("data: " + JSON.stringify(data));
             $scope.projects.push(data);
          });
    };
 
    $scope.setRoute = function(route){
+      $scope.saved = angular.copy(false);
       $location.path(route);
    }
-
-   $scope.project = {};
 
    $scope.createProject = function(project){
       $scope.project = angular.copy(project);
       $scope.add($scope.project);
-      $scope.saved = true;
+      $scope.project = angular.copy({});
       $location.path('/');
+      $scope.saved = angular.copy(true);
+      console.log("saved: " + $scope.saved);
    };
 
-   $scope.saved = false;
+
+   //$scope.saved = false;
+   console.log("saved: " + $scope.saved);
 
    $scope.fetch();
 }

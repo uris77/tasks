@@ -29,9 +29,11 @@
       }
    </style>
    <div class="row-fluid message">
-      <div class="span12">
+      <div class="span12" ng-hide="saved != true">
          Project has been saved!
-         <button class="close"><i class="icon-remove"></i></button>
+         <button class="close" ng-click="close_saved_project_message()">
+            <i class="icon-remove"></i>
+         </button>
       </div>
    </div>
    <div ng-view>

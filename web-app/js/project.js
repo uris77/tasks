@@ -1,9 +1,9 @@
 angular.module('Project',['ngResource']).
    config(function($routeProvider){
       $routeProvider.
-         when('/new', {templateUrl:'partials/project_form.html'}).
-         when('/', {templateUrl: 'partials/project_list.html'}).
-         otherwise({redirectTo:'/', template:'/partials/project_list.html'});
+         when('/new', {templateUrl:'../partials/project_form.html'}).
+         when('/', {templateUrl: '../partials/project_list.html'}).
+         otherwise({redirectTo:'/', template:'../partials/project_list.html'});
 });
 function ProjectController($scope, $http, $location){
 
